@@ -19,7 +19,10 @@ weather.addEventListener('submit', (e) => {
   let img3 = document.createElement("img");
   let p1 = document.createElement("p");
   let p2 = document.createElement("p");
+  let con3=document.createElement("div");
 
+  p1.classList.add("para");
+  p2.classList.add("para");
   img2.classList.add("clip");
   img1.classList.add("clip");
   img3.classList.add("clip");
@@ -33,6 +36,7 @@ weather.addEventListener('submit', (e) => {
 
       con2.classList.add("info2");
       con1.classList.add("info3");
+      con3.classList.add("info2");
 
       con1.append(img3);
       rep.prepend(outer);
@@ -40,8 +44,11 @@ weather.addEventListener('submit', (e) => {
 
       outer.append(con2);
       outer.prepend(con1);
+      outer.append(con3);
 
-      con2.append(img1, p1, img2, p2);
+      con2.append(img1, p1);
+      con3.append(img2,p2);
+
       const icon=res.data.weather[0].icon;
       const condition = res.data.weather[0].main;
       img1.src = "/media/windspeed.png";
@@ -63,11 +70,11 @@ weather.addEventListener('submit', (e) => {
       else if (condition == "Snow")
         img3.src = "/media/snow.png";
 
-      const tempr = res.data.main.temp
+      const tempr = res.data.main.temp;
       const winds = res.data.wind.speed;
       const humid = res.data.main.humidity;
-      p1.innerHTML = `${winds}Km/H<br>`;
-      p2.innerHTML = `${humid}%`;
+      p1.innerHTML = `WIND SPEED<br><br>${winds}Km/H<br>`;
+      p2.innerHTML = `HUMIDITY<br><br>${humid}%`;
       container.innerHTML = `<h2>${res.data.name}</h2><br>${tempr}°C`;
     })
     .catch((e) => {
@@ -76,4 +83,5 @@ weather.addEventListener('submit', (e) => {
 
 
 })
+
 
